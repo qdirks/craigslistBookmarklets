@@ -11,7 +11,6 @@ var ajax = function(url, onload, onerror) {
     xhr.send();
     return xhr;
 };
-var reqs = [];
 results.forEach(li=>{
     var url = li.querySelector('a').href;
     ajax(url, function() {
@@ -24,27 +23,19 @@ results.forEach(li=>{
         showDescription(li, 'NULL');
     });
 });
-function doIfDone(callback) {
-    if (reqs.length === results.length) { callback(); }
-}
-function showDescriptions() {
+function showDescription(li, desc) {
     var descDiv = document.createElement('div');
     var contDiv = document.createElement('div');
     contDiv.style.float = 'left';
     contDiv.style.height = '0px';
     contDiv.style.position = 'relative';
-    contDiv.style.zIndex = '3000';
+    contDiv.style.zIndex = '1';
+    contDiv.style.top = '25px';
     descDiv.style.width = '300px';
     descDiv.style.height = '100px';
     descDiv.style.overflowY = 'scroll';
-    descDiv.style.background = 'rgba(255, 255, 255, 0.63)';
-    for (var ix = 0; ix < reqs.length; ix++) {
-        var li = reqs[ix].li;
-        var desc = reqs[ix].desc;
-        var div = descDiv.cloneNode(true);
-        var div2 = contDiv.cloneNode(true);
-        div2.appendChild(div);
-        div.textContent = desc;
-        li.insertAdjacentElement('afterbegin', div2);
-    }
+    descDiv.style.background = 'rgba(255, 255, 255, 0.4)';
+    contDiv.appendChild(descDiv);
+    descDiv.textContent = desc;
+    li.insertAdjacentElement('afterbegin', contDiv);
 }
