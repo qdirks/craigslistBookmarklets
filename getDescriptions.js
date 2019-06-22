@@ -1,3 +1,5 @@
+/* This tool gets the descriptions and places them on the front of the listing on a white background. */
+
 javascript:
 var results = [].slice.call(document.querySelectorAll("div#sortable-results.content ul.rows li"));
 var ajax = function(url, onload, onerror) {
