@@ -16,12 +16,12 @@ results.forEach(li=>{
     var url = li.querySelector('a').href;
     ajax(url, function() {
         var postingBody = this.responseXML.querySelector("section#postingbody");
-        postingBody.removeChild(postingBody.querySelector('div.print-information.print-qrcode-container'));
-        reqs.push({li: li, desc: postingBody.textContent});
-        doIfDone(showDescriptions);
+        postingBody.removeChild(
+            postingBody.querySelector(
+                'div.print-information.print-qrcode-container'));
+        showDescription(li, postingBody.textContent);
     }, function() {
-        reqs.push({li: li, desc: 'NULL'});
-        doIfDone(showDescriptions);
+        showDescription(li, 'NULL');
     });
 });
 function doIfDone(callback) {
